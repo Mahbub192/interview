@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { FlatList, View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { FlatList, View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { addPost, likePost } from '../redux/postSlice';
 import PostItem from './PostItem';
 
@@ -11,27 +11,9 @@ const MainScreen = () => {
   const [userName, setUserName] = useState('');
   const [content, setContent] = useState('');
 
-  const validateForm = () => {
-    if (!userName.trim()) {
-      Alert.alert('Validation Error', 'User name is required.');
-      return false;
-    }
-    if (!content.trim()) {
-      Alert.alert('Validation Error', 'Post content is required.');
-      return false;
-    }
-    if (content.length > 200) {
-      Alert.alert('Validation Error', 'Post content cannot exceed 200 characters.');
-      return false;
-    }
-    return true;
-  };
-
   const handleAddPost = () => {
-    if (!validateForm()) return;
-
     const newPost = {
-      id: posts.length ? Math.max(posts.map(post => post.id)) + 1 : 1,
+      id: posts.length + 1,
       userName,
       timestamp: new Date().toISOString(),
       content,
@@ -56,8 +38,6 @@ const MainScreen = () => {
           placeholder="What's on your mind?"
           value={content}
           onChangeText={setContent}
-          multiline
-          numberOfLines={4}
         />
         <Button title="Add Post" onPress={handleAddPost} />
       </View>
@@ -85,6 +65,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 10,
     paddingHorizontal: 10,
+    borderRadius:10, 
   },
 });
 

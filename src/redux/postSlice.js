@@ -1,27 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-const loadPostsFromLocalStorage = () => {
-  const savedPosts = localStorage.getItem('posts');
-  return savedPosts ? JSON.parse(savedPosts) : [];
-};
-
-const savePostsToLocalStorage = (posts) => {
-  localStorage.setItem('posts', JSON.stringify(posts));
-};
+import postsData from '../assets/posts.json';
 
 const postSlice = createSlice({
   name: 'posts',
-  initialState: loadPostsFromLocalStorage(),
+  initialState: postsData,
   reducers: {
     addPost: (state, action) => {
       state.push(action.payload);
-      savePostsToLocalStorage(state);
     },
     likePost: (state, action) => {
       const post = state.find(post => post.id === action.payload);
       if (post) {
         post.likes += 1;
-        savePostsToLocalStorage(state);
       }
     }
   }

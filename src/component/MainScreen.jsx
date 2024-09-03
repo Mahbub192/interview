@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { FlatList, View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { FlatList, View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import { addPost, likePost } from '../redux/postSlice';
 import PostItem from './PostItem';
 

@@ -4,9 +4,9 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 const PostItem = ({ post, onLike }) => {
   return (
     <View style={styles.postContainer}>
-      <Text style={styles.userName}>{post.userName}</Text>
-      <Text style={styles.timestamp}>{new Date(post.timestamp).toLocaleString()}</Text>
-      <Text style={styles.content}>{post.content}</Text>
+      <Text style={styles.userName}>Name: {post.userName}</Text>
+      <Text style={styles.timestamp}>Timestamp: {new Date(post.timestamp).toLocaleString()}</Text>
+      <Text style={styles.content}>Content: {post.content}</Text>
       <View style={styles.likeContainer}>
         <Button title="Like" onPress={onLike} />
         <Text style={styles.likes}>{post.likes} Likes</Text>
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   timestamp: {
-    fontSize: 12,
+    fontSize: 13,
     color: '#666',
   },
   content: {
